@@ -302,7 +302,7 @@
 				</div>
 				<div class="margin margin30"></div>
 				<a href="#" class="boton gris">Pagar en línea</a>
-				<a href="#" class="boton azul">Continuar</a>
+				<a href="<?php echo $this->Html->url(["controller" => "Home","action" => "workflow",4])?>" class="boton azul">Continuar</a>
 
 				<?php } elseif($tengoSueno == 4){ ?>
 					<form id="documentos" class="hack-form">
@@ -346,7 +346,7 @@
 
 								<div class="collapse-title" data-content="collapse-9">
 									<span class="toggle glyphicon glyphicon-chevron-down"></span>
-									<h3>2.8.- Certificado de deuda SBIF</h3>
+									<h3>4.2.- Fotocopia de cedula de identidad</h3>
 								</div>
 								<div class="collapse-content" id="collapse-9">
 									<div class="lineaform">
@@ -355,14 +355,14 @@
 									<div class="lineaform file">
 										<label> <div class="apart"></div></label>
 										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
-										<input type="file" accept=".pdf" id="pdf3">
+										<input type="file" name="fotocopia_carnet" accept=".pdf" id="pdf3">
 									</div>
 								</div>
 							</div>
 							<div class="collapse">
 								<div class="collapse-title" data-content="collapse-10">
 									<span class="toggle glyphicon glyphicon-chevron-down"></span>
-									<h3>2.8.- Certificado de deuda SBIF</h3>
+									<h3>4.3.- Inscripcion de dominio de propiedad</h3>
 								</div>
 								<div class="collapse-content" id="collapse-10">
 									<div class="lineaform">
@@ -371,10 +371,64 @@
 									<div class="lineaform file">
 										<label> <div class="apart"></div></label>
 										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
-										<input type="file" accept=".pdf" id="pdf3">
+										<input type="file" name="inscripcionDominioPropiedad" accept=".pdf" id="pdf3">
 									</div>
 								</div>
 							</div>
+							
+							
+							
+							
+							
+							<div class="collapse">
+								<div class="collapse-title" data-content="collapse-11">
+									<span class="toggle glyphicon glyphicon-chevron-down"></span>
+									<h3>4.4.- Escritura publica</h3>
+								</div>
+								<div class="collapse-content" id="collapse-11">
+									<div class="lineaform">
+										<a href="https://www.clientebancario.cl/informedeudacb/aplicacion?indice=110.0" target="_blank">Descargar aquí</a>
+									</div>
+									<div class="lineaform file">
+										<label> <div class="apart"></div></label>
+										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
+										<input type="file" name="escrituraPublica" accept=".pdf" id="pdf3">
+									</div>
+								</div>
+							</div>
+							<div class="collapse">
+								<div class="collapse-title" data-content="collapse-12">
+									<span class="toggle glyphicon glyphicon-chevron-down"></span>
+									<h3>4.5.- Estudio de titulo 10 años</h3>
+								</div>
+								<div class="collapse-content" id="collapse-12">
+									<div class="lineaform">
+										<a href="https://www.clientebancario.cl/informedeudacb/aplicacion?indice=110.0" target="_blank">Descargar aquí</a>
+									</div>
+									<div class="lineaform file">
+										<label> <div class="apart"></div></label>
+										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
+										<input type="file" name="estudioTitulo" accept=".pdf" id="pdf3">
+									</div>
+								</div>
+							</div>
+							<div class="collapse">
+								<div class="collapse-title" data-content="collapse-13">
+									<span class="toggle glyphicon glyphicon-chevron-down"></span>
+									<h3>4.6.- Certificado de no expropiacion serviu</h3>
+								</div>
+								<div class="collapse-content" id="collapse-13">
+									<div class="lineaform">
+										<a href="https://www.clientebancario.cl/informedeudacb/aplicacion?indice=110.0" target="_blank">Descargar aquí</a>
+									</div>
+									<div class="lineaform file">
+										<label> <div class="apart"></div></label>
+										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
+										<input type="file" name="certNoExpropiacion" accept=".pdf" id="pdf3">
+									</div>
+								</div>
+							</div>
+							
 						</div>
 						<div class="margin margin30"></div>
 						<div class="row">
@@ -421,7 +475,38 @@
 		        processData: false,
 		        contentType: false,
 				success: function(data) {
-					alert(data);
+					var parsed = $.parseJSON(data);
+					if(parsed == 'Datos Guardados.'){
+						window.location = '<?php echo $this->Html->url(["controller" => "Home","action" => "workflow",3])?>'
+						
+					}else{
+						
+					}
+				},
+				error: function(data){
+					
+				},
+			});	
+			
+			return false;
+		});
+
+
+		$("#documentos").submit(function(){
+			$.ajax({
+				url: '<?php echo $this->Html->url(["controller" => "Home","action" => "guardarAntecedentesFourPoint"])?>',
+				type: 'POST',
+				data: new FormData(this),
+		        processData: false,
+		        contentType: false,
+				success: function(data) {
+					var parsed = $.parseJSON(data);
+					if(parsed == 'Datos Guardados.'){
+						window.location = '<?php echo $this->Html->url(["controller" => "Home","action" => "workflow",5])?>'
+						
+					}else{
+						
+					}
 				},
 				error: function(data){
 					

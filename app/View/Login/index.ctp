@@ -139,7 +139,7 @@
 				success: function(data) {
 					var parsed = $.parseJSON(data);
 					if(parsed == "Usuario correcto."){
-						window.location = '<?php echo $this->Html->url(["controller" => "home","action" => "workflow"])?>';
+						window.location = '<?php echo $this->Html->url(["controller" => "home","action" => "workflow",2])?>';
 					}else{
 						alert("usuario o clave incorrecta");
 					}
@@ -159,6 +159,7 @@
 				data: $(this).serialize(),
 				success: function(data) {
 					var parsed = $.parseJSON(data);
+					console.log(parsed);
 					if(parsed == 'Usuario registrado.'){
 						$('#registrar_form')[0].reset();
 						$('#registrar_form #respuesta').html('<div class="alert bottom success"><p>'+parsed+'</p></div>');

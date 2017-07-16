@@ -52,18 +52,29 @@
 				if(!empty($_FILES["cot_prev"]["name"])){
 					if(move_uploaded_file($_FILES["cot_prev"]["tmp_name"], "documentos/".$_FILES["cot_prev"]["name"])){
 						$this->loadModel("TBarchivo");
-						$this->TBarchivo->saveTBarchivo($_FILES["cot_prev"]["name"],"DOC_001");
+						$this->TBarchivo->saveTBarchivo($_FILES["cot_prev"]["name"],"DOC_001","2.6");
 					}else{
 						
 					}
 				}
+				// procesar contrato de trabajo
+				if(!empty($_FILES["contrato_trab"]["name"])){
+					if(move_uploaded_file($_FILES["contrato_trab"]["tmp_name"], "documentos/".$_FILES["contrato_trab"]["name"])){
+						$this->loadModel("TBarchivo");
+						$this->TBarchivo->saveTBarchivo($_FILES["contrato_trab"]["name"],"DOC_002","2.7");
+					}else{
 				
+					}
+				}
+				// procesar contrato de trabajo
+				if(!empty($_FILES["cert_sbif"]["name"])){
+					if(move_uploaded_file($_FILES["cert_sbif"]["tmp_name"], "documentos/".$_FILES["cert_sbif"]["name"])){
+						$this->loadModel("TBarchivo");
+						$this->TBarchivo->saveTBarchivo($_FILES["cert_sbif"]["name"],"DOC_003","2.8");
+					}else{
 				
-				echo "<pre>";
-				print_r($_FILES);
-				echo "</pre>";
-				exit;
-				
+					}
+				}
 				// antecedentes adicionales
 				$this->loadModel('AntecedentesAdicionales');
 				$this->AntecedentesAdicionales->saveAntecedentesAdicionales($datos);
@@ -87,10 +98,57 @@
 			}
 		}
 		
-		public function UploadFiles(){
-			echo "<pre>";
-			print_r($_FILES);
-			echo "</pre>";
+		public function guardarAntecedentesFourPoint(){
+			if ($this->request->is('ajax')) {
+				$this->layout="ajax";
+				$this->view="ajax";
+				$datos = $this->request->data;
+				if(!empty($_FILES["fotocopia_carnet"]["name"])){
+					if(move_uploaded_file($_FILES["fotocopia_carnet"]["tmp_name"], "documentos/".$_FILES["fotocopia_carnet"]["name"])){
+						$this->loadModel("TBarchivo");
+						$this->TBarchivo->saveTBarchivo($_FILES["fotocopia_carnet"]["name"],"DOC_004","4.2");
+					}else{
+			
+					}
+				}
+				if(!empty($_FILES["inscripcionDominioPropiedad"]["name"])){
+					if(move_uploaded_file($_FILES["inscripcionDominioPropiedad"]["tmp_name"], "documentos/".$_FILES["inscripcionDominioPropiedad"]["name"])){
+						$this->loadModel("TBarchivo");
+						$this->TBarchivo->saveTBarchivo($_FILES["inscripcionDominioPropiedad"]["name"],"DOC_005","4.3");
+					}else{
+							
+					}
+				}
+				if(!empty($_FILES["escrituraPublica"]["name"])){
+					if(move_uploaded_file($_FILES["escrituraPublica"]["tmp_name"], "documentos/".$_FILES["escrituraPublica"]["name"])){
+						$this->loadModel("TBarchivo");
+						$this->TBarchivo->saveTBarchivo($_FILES["escrituraPublica"]["name"],"DOC_006","4.4");
+					}else{
+							
+					}
+				}
+				if(!empty($_FILES["estudioTitulo"]["name"])){
+					if(move_uploaded_file($_FILES["estudioTitulo"]["tmp_name"], "documentos/".$_FILES["estudioTitulo"]["name"])){
+						$this->loadModel("TBarchivo");
+						$this->TBarchivo->saveTBarchivo($_FILES["estudioTitulo"]["name"],"DOC_007","4.5");
+					}else{
+							
+					}
+				}
+				if(!empty($_FILES["certNoExpropiacion"]["name"])){
+					if(move_uploaded_file($_FILES["certNoExpropiacion"]["tmp_name"], "documentos/".$_FILES["certNoExpropiacion"]["name"])){
+						$this->loadModel("TBarchivo");
+						$this->TBarchivo->saveTBarchivo($_FILES["certNoExpropiacion"]["name"],"DOC_008","4.5");
+					}else{
+							
+					}
+				}
+				$this->set('info',"Datos Guardados.");
+			
+			
+			}else{
+				throw new NotFoundException('Error 404');
+			}
 			
 		}
 		
