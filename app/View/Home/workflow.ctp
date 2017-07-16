@@ -1,64 +1,5 @@
 <?php if(!isset($tengoSueno)) $tengoSueno = 2; ?>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvPwt41hrJ0Mrn79-pqM3Tor4ciY5YcFI&libraries=places"></script>
-<script>
-	/*
-	var address = "Alcantara 99 las condes";
-	var latitude;
-	var longitude;
-	$.ajax({
-	  url:"http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=false",
-	  type: "POST",
-	  success:function(res){
-		 latitude = (res.results[0].geometry.location.lat);
-		 longitude = (res.results[0].geometry.location.lng);
-		 initMap(latitude, longitude);
-	  }
-	});
-	var map;
-	var infowindow;
-
-	function initMap(latitude, longitude) {
-		var pyrmont = {lat: latitude, lng: longitude};
-		console.log(pyrmont);
-
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: pyrmont,
-			zoom: 15
-		});
-
-		infowindow = new google.maps.InfoWindow();
-		var service = new google.maps.places.PlacesService(map);
-		service.nearbySearch({
-			location: pyrmont,
-			radius: 500,
-			type: ['store']
-		}, callback);
-	}
-
-	function callback(results, status) {
-		if (status === google.maps.places.PlacesServiceStatus.OK) {
-			for (var i = 0; i < results.length; i++) {
-				createMarker(results[i]);
-			}
-		}
-	}
-
-	function createMarker(place) {
-		var placeLoc = place.geometry.location;
-		var marker = new google.maps.Marker({
-			map: map,
-			position: place.geometry.location
-		});
-
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.setContent(place.name);
-			infowindow.open(map, this);
-		});
-	}
-	*/
-</script>
-
 <section class="header_page seccion bg dark" style="background-image:url(<?php echo $this->webroot.'img/login_bg.jpg'; ?>);">
 	<div class="container">
 		<h1>Kilometro <?php echo $tengoSueno; ?></h1>
@@ -94,7 +35,7 @@
 					<div class="linea"></div>
 				</div>
 				<div class="col-md-3 paso_general" id="paso4" data-id="4">
-					<div class="paso paso4"><p class="tooltip" title="Subida de PDF">4k</p></div>
+					<div class="paso paso4"><p class="tooltip" title="Documentación adicional">4k</p></div>
 					<div class="linea"></div>
 				</div>
 				<div class="col-md-3 paso_general" id="paso5" data-id="5">
@@ -302,7 +243,7 @@
 				</div>
 				<div class="margin margin30"></div>
 				<a href="#" class="boton gris">Pagar en línea</a>
-				<a href="<?php echo $this->Html->url(["controller" => "Home","action" => "workflow",4])?>" class="boton azul">Continuar</a>
+				<a href="<?php echo $this->Html->url(["controller" => "Home","action" => "workflow",4])?>" class="boton azul" id="registarSemaforo">Continuar</a>
 
 				<?php } elseif($tengoSueno == 4){ ?>
 					<form id="documentos" class="hack-form">
@@ -354,8 +295,8 @@
 									</div>
 									<div class="lineaform file">
 										<label> <div class="apart"></div></label>
-										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
-										<input type="file" name="fotocopia_carnet" accept=".pdf" id="pdf3">
+										<label class="file" for="pdf4"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
+										<input type="file" name="fotocopia_carnet" accept=".pdf" id="pdf4">
 									</div>
 								</div>
 							</div>
@@ -370,15 +311,11 @@
 									</div>
 									<div class="lineaform file">
 										<label> <div class="apart"></div></label>
-										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
-										<input type="file" name="inscripcionDominioPropiedad" accept=".pdf" id="pdf3">
+										<label class="file" for="pdf5"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
+										<input type="file" name="inscripcionDominioPropiedad" accept=".pdf" id="pdf5">
 									</div>
 								</div>
 							</div>
-							
-							
-							
-							
 							
 							<div class="collapse">
 								<div class="collapse-title" data-content="collapse-11">
@@ -391,8 +328,8 @@
 									</div>
 									<div class="lineaform file">
 										<label> <div class="apart"></div></label>
-										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
-										<input type="file" name="escrituraPublica" accept=".pdf" id="pdf3">
+										<label class="file" for="pdf6"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
+										<input type="file" name="escrituraPublica" accept=".pdf" id="pdf6">
 									</div>
 								</div>
 							</div>
@@ -407,8 +344,8 @@
 									</div>
 									<div class="lineaform file">
 										<label> <div class="apart"></div></label>
-										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
-										<input type="file" name="estudioTitulo" accept=".pdf" id="pdf3">
+										<label class="file" for="pdf7"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
+										<input type="file" name="estudioTitulo" accept=".pdf" id="pdf7">
 									</div>
 								</div>
 							</div>
@@ -423,8 +360,8 @@
 									</div>
 									<div class="lineaform file">
 										<label> <div class="apart"></div></label>
-										<label class="file" for="pdf3"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
-										<input type="file" name="certNoExpropiacion" accept=".pdf" id="pdf3">
+										<label class="file" for="pdf8"><span class="glyphicon glyphicon-file"></span>Buscar archivo</label>
+										<input type="file" name="certNoExpropiacion" accept=".pdf" id="pdf8">
 									</div>
 								</div>
 							</div>
@@ -439,12 +376,17 @@
 					</form>
 				<?php }elseif($tengoSueno == 5){ ?>
 
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<h2 class="titulo_border">Trámites legales del banco</h2>
+				<ul class="lista_check">
+					<li><span class="glyphicon glyphicon-ok"></span>Escritura compraventa.</a></li>
+					<li><span class="glyphicon glyphicon-ok"></span>Inscripción del contrato en el CBRS.</a></li>
+					<li><span class="glyphicon glyphicon-ok"></span>Pase a retirar sus llaves.</a></li>
+				</ul>
+				<div class="margin margin30"></div>
+				<div id="alerta" class="success">
+					<h2><span class="glyphicon glyphicon-ok"></span>Su crédito hipotecario ha finalizado con éxito</h2>
+					<p>Estimado cliente, su operación hipotecaria ha finalizado con éxito y lo invitamos cordialmente a que retire las llaves de su propiedad soñada.</p>
+				</div>
 
 				<?php } ?>
 			</div>
@@ -457,7 +399,7 @@
 				}elseif($tengoSueno == 4){
 					echo $this->Html->image('mono_amarillo.png', array('alt' => 'BCI'));
 				}elseif($tengoSueno == 5){
-					echo $this->Html->image('casa.png', array('alt' => 'BCI'));
+					echo $this->Html->image('monos.png', array('alt' => 'BCI'));
 				}
 				?>
 			</div>
@@ -467,6 +409,45 @@
 
 <script>
 	$(document).ready(function(){
+		<?php if($tengoSueno == 5){?>
+			$.ajax({
+				url: '<?php echo $this->Html->url(["controller" => "Home","action" => "finalizarWorkflow"])?>',
+				type: 'POST',
+		        processData: false,
+		        contentType: false,
+				success: function(data) {
+					var parsed = $.parseJSON(data);
+					console.log(parsed);
+				},
+				error: function(data){
+					
+				},
+			});
+		<?php } ?>
+
+		$('#registarSemaforo').click(function(event){
+			event.preventDefault();
+			var url = $(this).attr('href');
+
+			$.ajax({
+				url: '<?php echo $this->Html->url(["controller" => "Home","action" => "registarSemaforo"])?>',
+				type: 'POST',
+		        processData: false,
+		        contentType: false,
+				success: function(data) {
+					var parsed = $.parseJSON(data);
+					if(parsed == 'Datos Guardados.'){
+						window.location = url;
+					}else{
+						console.log(parsed);
+					}
+				},
+				error: function(data){
+					
+				},
+			});	
+		});
+
 		$("#antecedentes").submit(function(){
 			$.ajax({
 				url: '<?php echo $this->Html->url(["controller" => "Home","action" => "guardarAntecedentes"])?>',
@@ -516,4 +497,61 @@
 			return false;
 		});
 	});
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvPwt41hrJ0Mrn79-pqM3Tor4ciY5YcFI&libraries=places"></script>
+<script>
+	var address = "Alcantara 99 las condes";
+	var latitude;
+	var longitude;
+	$.ajax({
+	  url:"http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=false",
+	  type: "POST",
+	  success:function(res){
+		 latitude = (res.results[0].geometry.location.lat);
+		 longitude = (res.results[0].geometry.location.lng);
+		 initMap(latitude, longitude);
+	  }
+	});
+	var map;
+	var infowindow;
+
+	function initMap(latitude, longitude) {
+		var pyrmont = {lat: latitude, lng: longitude};
+		console.log(pyrmont);
+
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: pyrmont,
+			zoom: 15
+		});
+
+		infowindow = new google.maps.InfoWindow();
+		var service = new google.maps.places.PlacesService(map);
+		service.nearbySearch({
+			location: pyrmont,
+			radius: 500,
+			type: ['store']
+		}, callback);
+	}
+
+	function callback(results, status) {
+		if (status === google.maps.places.PlacesServiceStatus.OK) {
+			for (var i = 0; i < results.length; i++) {
+				createMarker(results[i]);
+			}
+		}
+	}
+
+	function createMarker(place) {
+		var placeLoc = place.geometry.location;
+		var marker = new google.maps.Marker({
+			map: map,
+			position: place.geometry.location
+		});
+
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.setContent(place.name);
+			infowindow.open(map, this);
+		});
+	}
 </script>

@@ -32,6 +32,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	?>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<?php echo $this->Html->script('bootstrap.min.js'); ?>
@@ -75,9 +76,26 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		<footer>
 			<div class="container">
-				<p>Atención a Clientes Bci Directo: <mark>600 692 8000</mark>, Mesa Central: <mark>22692 7000</mark><br>
-				Av. El Golf 125, Las Condes, Santiago. Notificaciones Legales: Agustinas 1161, 7° piso. Santiago Centro, Santiago.</p>
-				<!-- <p><?php echo $cakeVersion; ?></p> -->
+				<div class="row flex">
+					<div class="col-md-6">
+						<p>Atención a Clientes Bci Directo: <mark>600 692 8000</mark>, Mesa Central: <mark>22692 7000</mark><br>
+						Av. El Golf 125, Las Condes, Santiago. Notificaciones Legales: Agustinas 1161, 7° piso. Santiago Centro, Santiago.</p>
+					</div>
+					<div class="col-md-6 text_right">
+						<div class="cont-ext">
+							<div class="cont-int">
+								<ul class="social">
+									<li><a href="#"><span class="fa fa-facebook-official"></span></a></li>
+									<li><a href="#"><span class="fa fa-twitter-square"></span></a></li>
+									<li><a href="#"><span class="fa fa-whatsapp"></span></a></li>
+									<li><a href="#"><span class="fa fa-comment"></span></a></li>
+									<li><a href="#"><span class="fa fa-envelope"></span></a></li>
+									<li><a href="#"><?php echo $this->Html->image('asterisk.png', array('alt' => 'BCI')); ?></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</footer>
 	</article>

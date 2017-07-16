@@ -45,6 +45,7 @@
 					<div class="scroll">
 						<div id="content">
 							<form class="hack-form" id="registrar_form">
+								<div id="respuesta"></div>
 								<div class="row">
 									<div class="col-md-12 lineaform">
 										<label>Nombres</label>
@@ -119,7 +120,6 @@
 										<input type="submit" value="Registarse" class="azul">
 									</div>
 								</div>
-								<div id="respuesta"></div>
 							</form>
 						</div>
 					</div>
@@ -159,12 +159,17 @@
 				data: $(this).serialize(),
 				success: function(data) {
 					var parsed = $.parseJSON(data);
-					console.log(parsed);
 					if(parsed == 'Usuario registrado.'){
 						$('#registrar_form')[0].reset();
-						$('#registrar_form #respuesta').html('<div class="alert bottom success"><p>'+parsed+'</p></div>');
+						$('#registrar_form #respuesta').html('<div class="alert top success"><p>'+parsed+'</p></div>');
+
+						$(".lightbox .scroll").animate({ scrollTop: 0 }, 1000);
+
+						setTimeout(function(){
+							cerrarLightbox();
+						}, 2000);
 					}else{
-						$('#registrar_form #respuesta').html('<div class="alert bottom error"><p>Hay un campos vacío</p></div>');
+						$('#registrar_form #respuesta').html('<div class="alert top error"><p>Hay un campos vacío</p></div>');
 					}
 				},
 				error: function(e){
@@ -178,6 +183,6 @@
 </script>
 <?php }else{ ?>
 	<script>
-	window.location = '<?php echo $this->Html->url(["controller" => "home","action" => "workflow"])?>';
+	window.location = '<?php echo $this->Html->url(["controller" => "home","action" => "workflow", 2])?>';
 	</script>
 <?php } ?>

@@ -19,7 +19,9 @@ MENSAJE="mensajes.csv"
 SQL="select a.id, b.telefono_celular, b.apellido_paterno, a.rut, b.email
      from TB_workflow as a 
      inner join Cliente as b on a.rut = b.rut
-     where a.flag_msg_actual = 0"
+     inner join TB_config as c on a.id_proceso = c.id_proceso
+     where a.flag_msg_actual = 0 and c.activo = 1
+     order by a.rut, a.id_proceso"
 
 mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $REGISTROS
 
@@ -41,18 +43,21 @@ do
          from TB_workflow as a 
          inner join TB_config as b on a.id_proceso = b.id_proceso
          inner join TB_mensajes as c on b.codigo_mensaje = c.codigo_mensaje
-         where a.id = $ID"
+         where a.id = $ID
+         order by a.rut, a.id_proceso"
 
-    echo $SQL    
+    echo "1 -> $SQL"    
 
     mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $MENSAJE
-    SALUDO=$(tail -n 1 $MENSAJE)
+    SALUDO="Haz finalizado "$(tail -n 1 $MENSAJE)
 
 #    echo $SALUDO
  
 #    echo "$ID => $NUMERO => $APELLIDO_PATERNO => $RUT => $MAIL => $SALUDO"
 
     $EXEC $PARAM "add_contact $NUMERO $APELLIDO_PATERNO $RUT"
+
+#    sleep 10
 
     $EXEC $PARAM "msg "$APELLIDO_PATERNO"_"$RUT" $SALUDO"
 
@@ -71,33 +76,37 @@ do
          inner join TB_config as b on a.id_proceso = b.id_proceso
          where a.id = $ID"
 
-#    echo $SQL    
+    echo "2 -> $SQL"    
 
     mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $MENSAJE
     ID_SIGUIENTE=$(tail -n 1 $MENSAJE)
 
-#    echo $ID_SIGUIENTE
+    echo $ID_SIGUIENTE
 
     SQL="select b.descripcion
          from TB_config as a
          inner join TB_mensajes as b on a.codigo_mensaje = b.codigo_mensaje
          where a.id_proceso = '$ID_SIGUIENTE'"
 
-#    echo $SQL    
+    echo "3 -> $SQL"    
 
     mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $MENSAJE
-    SALUDO=$(tail -n 1 $MENSAJE)
+    SALUDO="Ahora continuas con "$(tail -n 1 $MENSAJE)
     
 #    echo $SALUDO
 
     SQL="update TB_workflow set flag_pro_sig = 1 where id=$ID" 
     mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" 
 
+    sleep 10
+
     $EXEC $PARAM "msg "$APELLIDO_PATERNO"_"$RUT" $SALUDO"
 
     # ENVIO DE CORREO
     tail -n 1 $MENSAJE > mensaje.txt
     mutt -s "Bienvenido " $MAIL < mensaje.txt
+
+    sleep 10
 
     fi
 done < "$REGISTROS"

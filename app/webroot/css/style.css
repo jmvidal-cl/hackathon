@@ -23,6 +23,10 @@ header .text_right span{margin-right:10px;}
 
 footer{padding:15px 0;background:#222}
 footer p{color: #fff}
+footer ul.social li{display:inline-block;font-size: 23px;margin-right:10px;vertical-align:middle;}
+footer ul.social li:last-of-type{margin-right:0}
+footer ul.social li a{color:#fff;transition:all .3s ease;}
+footer ul.social li a:hover{opacity:.6}
 
 .lineaform{margin-bottom:15px;}
 .lineaform:last-of-type{margin-bottom:0}
@@ -94,3 +98,7 @@ footer p{color: #fff}
 .boton.azul{background:#435AA8;}
 .boton.gris{background:#555}
 .boton:hover{background:#222}
+
+.lista_check{margin-top:-15px;}
+.lista_check li{display:block;}
+.lista_check li span{margin-right:10px;color:#008733;}

@@ -56,13 +56,13 @@
 					";
 			$db = $this->getDataSource();
 			$result = $db->fetchAll($sql);
-			$queryGetIdCliente = "select id from Cliente order by id desc limit 1";
-			$result = $db->fetchAll($queryGetIdCliente)[0]["Cliente"]["id"];
+			$queryGetIdCliente = "select rut from Cliente order by id desc limit 1";
+			$result = $db->fetchAll($queryGetIdCliente)[0]["Cliente"]["rut"];
 			$sqlInsertOtherTable = "
 				insert into TB_workflow (
 						id_proceso,
-						Id_Cliente,
-						fecha_inicio,
+						rut,
+						fecha_proceso,
 						sla_estado,
 						id_archivo,
 						flag_msg_actual,

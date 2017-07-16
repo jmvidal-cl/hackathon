@@ -11,16 +11,32 @@
 			
 		}
 		
-		public function googleApi() {
-
+		public function finalizarWorkflow(){
+			if ($this->request->is('ajax')) {
+				$this->layout="ajax";
+				$this->view="ajax";
+				$datos = $this->request->data;
+				$this->loadModel('TBworkflow');
+				$this->TBworkflow->saveTBworkflow("5.1");
+				$this->set('info',"Datos Guardados.");
+					
+			}else{
+				throw new NotFoundException('Error 404');
+			}
 		}
-				
-		public function facebookApi() {
 		
-		}
-		
-		public function nicoprueba(){
-
+		public function registarSemaforo(){
+			if ($this->request->is('ajax')) {
+				$this->layout="ajax";
+				$this->view="ajax";
+				$datos = $this->request->data;
+				$this->loadModel('TBworkflow');
+				$this->TBworkflow->saveTBworkflow("3.1");
+				$this->set('info',"Datos Guardados.");
+			
+			}else{
+				throw new NotFoundException('Error 404');
+			}
 		}
 
 		public function workflow(){
