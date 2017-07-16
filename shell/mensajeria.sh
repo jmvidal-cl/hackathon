@@ -46,10 +46,10 @@ do
          where a.id = $ID
          order by a.rut, a.id_proceso"
 
-    echo "1 -> $SQL"    
+    #echo "1 -> $SQL"    
 
     mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $MENSAJE
-    SALUDO="Haz finalizado "$(tail -n 1 $MENSAJE)
+    SALUDO=$(tail -n 1 $MENSAJE)
 
 #    echo $SALUDO
  
@@ -71,42 +71,47 @@ do
     tail -n 1 $MENSAJE > mensaje.txt
     mutt -s "Bienvenido " $MAIL < mensaje.txt
 
-    SQL="select b.pro_sig
-         from TB_workflow as a 
-         inner join TB_config as b on a.id_proceso = b.id_proceso
-         where a.id = $ID"
+##    SQL="select b.pro_sig
+##         from TB_workflow as a 
+##         inner join TB_config as b on a.id_proceso = b.id_proceso
+##         where a.id = $ID and b.pro_sig != '0'"
+##
+##    #echo "2 -> $SQL"    
+##
+##    mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $MENSAJE
+##    ID_SIGUIENTE=$(tail -n 1 $MENSAJE)
+##
+##    #echo $ID_SIGUIENTE
+##
+##    if [ ! -z $ID_SIGUIENTE   ]
+##    then
+##
+##        SQL="select b.descripcion
+##         from TB_config as a
+##         inner join TB_mensajes as b on a.codigo_mensaje = b.codigo_mensaje
+##         where a.id_proceso = '$ID_SIGUIENTE'"
+##
+##    #echo "3 -> $SQL"    
+##
+##        mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $MENSAJE
+##        SALUDO="Ahora continuas con "$(tail -n 1 $MENSAJE)
+##    
+###    echo $SALUDO
+##
+##        SQL="update TB_workflow set flag_pro_sig = 1 where id=$ID" 
+##        mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" 
+##
+##        sleep 10
+##
+##        $EXEC $PARAM "msg "$APELLIDO_PATERNO"_"$RUT" $SALUDO"
+##
+##    # ENVIO DE CORREO
+##        tail -n 1 $MENSAJE > mensaje.txt
+##        mutt -s "Bienvenido " $MAIL < mensaje.txt
+##
+        sleep 13
 
-    echo "2 -> $SQL"    
-
-    mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $MENSAJE
-    ID_SIGUIENTE=$(tail -n 1 $MENSAJE)
-
-    echo $ID_SIGUIENTE
-
-    SQL="select b.descripcion
-         from TB_config as a
-         inner join TB_mensajes as b on a.codigo_mensaje = b.codigo_mensaje
-         where a.id_proceso = '$ID_SIGUIENTE'"
-
-    echo "3 -> $SQL"    
-
-    mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" > $MENSAJE
-    SALUDO="Ahora continuas con "$(tail -n 1 $MENSAJE)
-    
-#    echo $SALUDO
-
-    SQL="update TB_workflow set flag_pro_sig = 1 where id=$ID" 
-    mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWD $DB_NAME --execute "$SQL" 
-
-    sleep 10
-
-    $EXEC $PARAM "msg "$APELLIDO_PATERNO"_"$RUT" $SALUDO"
-
-    # ENVIO DE CORREO
-    tail -n 1 $MENSAJE > mensaje.txt
-    mutt -s "Bienvenido " $MAIL < mensaje.txt
-
-    sleep 10
+##    fi
 
     fi
 done < "$REGISTROS"

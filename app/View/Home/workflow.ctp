@@ -114,11 +114,11 @@
 							<div class="collapse-content" id="collapse-3">
 								<div class="lineaform">
 									<label>Nombre empresa</label>
-									<input type="text" name="empresa">
+									<input type="text" name="empresa" value="Pixel Studio">
 								</div>
 								<div class="lineaform">
 									<label>Cargo</label>
-									<input type="text" name="cargo">
+									<input type="text" name="cargo" value="Developer">
 								</div>
 								<div class="lineaform">
 									<label>Contrato</label>
@@ -128,7 +128,7 @@
 								</div>
 								<div class="lineaform">
 									<label>Ingreso líquido</label>
-									<input type="number" name="ingreso" value="0">
+									<input type="number" name="ingreso" value="1000000">
 								</div>
 							</div>
 						</div>
@@ -141,18 +141,18 @@
 							<div class="collapse-content" id="collapse-4">
 								<div class="lineaform">
 									<label>Nombre</label>
-									<input type="text" name="nombre_conyugal">
+									<input type="text" name="nombre_conyugal" value="Mayte Rodriguez">
 								</div>
 								<div class="lineaform">
 									<label>Sexo</label>
 									<select name="sexo_conyugal">
 										<option value="M">Masculino</option>
-										<option value="F">Femenino</option>
+										<option value="F" selected>Femenino</option>
 									</select>
 								</div>
 								<div class="lineaform">
 									<label>Profesión</label>
-									<input type="text" name="profesion_conyugal">
+									<input type="text" name="profesion_conyugal" value="Ejecutiva BCI">
 								</div>
 							</div>
 						</div>
@@ -165,11 +165,11 @@
 							<div class="collapse-content" id="collapse-5">
 								<div class="lineaform">
 									<label>Vehiculo</label>
-									<input type="text" name="vehiculo">
+									<input type="text" name="vehiculo" value="Hyundai Santa FE 2017">
 								</div>
 								<div class="lineaform">
 									<label>Valor vehiculo</label>
-									<input type="number" name="valor_vehiculo" value="0">
+									<input type="number" name="valor_vehiculo" value="10000000">
 								</div>
 							</div>
 						</div>
@@ -384,7 +384,7 @@
 				</ul>
 				<div class="margin margin30"></div>
 				<div id="alerta" class="success">
-					<h2><span class="glyphicon glyphicon-ok"></span>Su crédito hipotecario ha finalizado con éxito</h2>
+					<h2><span class="glyphicon glyphicon-ok"></span>La maraton de tu crédito hipotecario ha finalizado con éxito</h2>
 					<p>Estimado cliente, su operación hipotecaria ha finalizado con éxito y lo invitamos cordialmente a que retire las llaves de su propiedad soñada.</p>
 				</div>
 
